@@ -55,6 +55,10 @@
 
 5. Use the application.
 
+## Credits
+- The initial structure of this project was created with [Diego Fernandes](https://github.com/diego3g) in the [Rocketseat's Ignite](https://rocketseat.com.br/ignite).
+- The project design was created by [Tiago Luchtenberg](https://www.instagram.com/tiagoluchtenberg/).
+
 ## ✍ Author
 <a href="https://www.github.com/MattFerreira18">
   <img src="https://www.github.com/MattFerreira18.png" style="border-radius: 50%" width="100px">
