@@ -5,7 +5,7 @@ type Transaction = {
   id: string;
   title: string;
   amount: number;
-  type: 'deposit' | 'withdraw';
+  type: 'DEPOSIT' | 'WITHDRAW';
   category: string;
   createdAt: string; 
 }
@@ -28,13 +28,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   
   useEffect(() => {
-    api.get('/transactions')
-      .then(response => setTransactions(response.data?.transactions));
+    api.get('/transactions/all') // get all transactions
+      .then(response => setTransactions(response.data));
   }, []);
   
   async function createTransaction(transaction: TransactionInput) {
     const response = await api.post('/transactions', transaction);
-    const { transaction: transactionData } = response.data;
+
+    const transactionData = response.data;
 
     setTransactions(prev => ([ ...prev, transactionData ]));
   }

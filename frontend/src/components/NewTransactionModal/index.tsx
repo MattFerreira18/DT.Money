@@ -19,7 +19,7 @@ type NewTransactionModalProps = {
 type SubmitEventProps = {
   title: string;
   amount: number;
-  type: 'deposit' | 'withdraw';
+  type: 'DEPOSIT' | 'WITHDRAW';
   category: string;
 }
 
@@ -36,7 +36,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
       title: '',
       category: '',
       amount: 0,
-      type: 'deposit',
+      type: 'DEPOSIT',
     })
     onRequestClose();
   }
@@ -76,9 +76,9 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
       <TransactionTypeContainer>
         <RadioBox 
           type="button"
-          isActive={ data.type === 'deposit' }
+          isActive={ data.type === 'DEPOSIT' }
           activeColor="green"
-          onClick={ (e) => setData((prev) => ({...prev, type: 'deposit'})) }
+          onClick={ (e) => setData((prev) => ({...prev, type: 'DEPOSIT'})) }
         >
           <img src={ incomeImg } alt="entrada" />
           <span>Entrada</span>
@@ -86,8 +86,8 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
         <RadioBox 
           type="button"
           activeColor="red"
-          isActive={ data.type === 'withdraw' }
-          onClick={ (e) => setData((prev) => ({...prev, type: 'withdraw'})) }
+          isActive={ data.type === 'WITHDRAW' }
+          onClick={ (e) => setData((prev) => ({...prev, type: 'WITHDRAW'})) }
         >
           <img src={ outcomeImg } alt="saida" />
           <span>Saida</span>

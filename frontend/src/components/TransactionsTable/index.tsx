@@ -6,7 +6,7 @@ import { Container } from "./styles";
 
 export function TransactionsTable() {
   const { transactions } = useTransactions();
-  console.log(transactions)
+  
   return (
     <Container>
       <table>
@@ -24,7 +24,7 @@ export function TransactionsTable() {
             transactions.map(({ amount, category, createdAt, id, title, type }) => (
               <tr key={ id }>
               <td>{ title }</td>
-              <td className={ type }>{ type === 'deposit' ? formatAmount(amount) : `-${ formatAmount(amount) }` }</td>
+              <td className={ type.toLocaleLowerCase() }>{ type === 'DEPOSIT' ? formatAmount(amount) : `-${ formatAmount(amount) }` }</td>
               <td>{ category }</td>
               <td>{ formatDate(createdAt) }</td>
             </tr>

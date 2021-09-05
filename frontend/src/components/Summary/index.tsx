@@ -11,7 +11,7 @@ export function Summary() {
   const { transactions } = useTransactions();
   
   const summary = transactions.reduce((acc, transaction) => {
-    if (transaction.type === 'deposit') {
+    if (transaction.type === 'DEPOSIT') {
       acc.deposits += transaction.amount;
       acc.total += transaction.amount;
     } else {
@@ -41,7 +41,7 @@ export function Summary() {
         </header>
         <strong>-{ formatAmount(summary.withdraws) }</strong>
       </div>
-      <div className={ `highlight-background ${summary.total > 0 ? 'positive' : 'negative' }` }>
+      <div className={ `highlight-background ${summary.total >= 0 ? 'positive' : 'negative' }` }>
         <header>
           <p>Total</p>
           <img src={totalImg} alt="total" />
