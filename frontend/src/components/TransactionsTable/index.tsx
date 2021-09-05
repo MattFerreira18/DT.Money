@@ -16,6 +16,8 @@ export function TransactionsTable() {
             <th>Valor</th>
             <th>Categoria</th>
             <th>Data</th>
+            <th>Listagem</th>
+            {/* <th>4 items</th> */}
           </tr>
         </thead>
 

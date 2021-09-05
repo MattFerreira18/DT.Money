@@ -83,6 +83,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 3rem;
     position: relative;
     border-radius: 0.25rem;
+
+    @media(max-width:480px) {
+      height: 100%;
+      border: 0;
+    }
   }
 
   .modal-close {

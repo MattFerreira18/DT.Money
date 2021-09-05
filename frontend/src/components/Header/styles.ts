@@ -13,6 +13,12 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  img {
+    @media(max-width:480px) {
+      transform: scale(0.9, 0.9);
+    }
+  }
+
   button {
     font-size: 1rem;
     color: #fff;
