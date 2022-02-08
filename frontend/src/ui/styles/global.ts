@@ -1,18 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 
-export const GlobalStyle = createGlobalStyle`
-  :root {
-    --red: #e52e4d;
-    --blue: #5429cc;
-    --blue-light: #6933ff;
-    --green: #33cc95;
-    --text-title: #363f5f;
-    --text-body: #969cb3;
-    --background: #f0f2f5;
-    --shape: #ffffff;
-  }
-  
+export const GlobalStyle = createGlobalStyle`  
   * {
     margin: 0;
     padding: 0;
@@ -31,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: var(--background);
+    background: ${({ theme }) => theme.colors.background};
     -webkit-font-smoothing: antialiased;
   }
 
@@ -79,7 +68,7 @@ export const GlobalStyle = createGlobalStyle`
   .modal-content {
     width: 100%;
     max-width: 576px;
-    background: var(--background);
+    background: ${({theme}) => theme.colors.background};
     padding: 3rem;
     position: relative;
     border-radius: 0.25rem;

@@ -12,22 +12,22 @@ export const Container = styled.div`
   }
 
   div {
-    background: var(--shape);
+    background: ${({theme}) => theme.colors.shape};
     padding: 1.5rem;
     border-radius: 0.25rem;
-    color: var(--text-title);
+    color: ${({theme}) => theme.colors["text-title"]};
 
   @media(max-width: 480px) {
     width: 20rem;
   }
 
     &.highlight-background.positive {
-      background: var(--green);
+      background: ${({theme}) => theme.colors.green};
       color: #fff;
     }
 
     &.highlight-background.negative {
-      background: var(--red);
+      background: ${({theme}) => theme.colors.red};
       color: #fff;
     }
 

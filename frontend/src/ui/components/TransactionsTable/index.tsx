@@ -1,6 +1,5 @@
-import { useTransactions } from '../../hooks/useTransactions';
-import { formatAmount } from '../../utils/formatAmount';
-import { formatDate } from '../../utils/formatDate';
+import { useTransactions } from "../../../app/hooks/useTransactions";
+import { format } from "../../../utils/format";
 
 import { Container } from "./styles";
 
@@ -26,9 +25,13 @@ export function TransactionsTable() {
             transactions.map(({ amount, category, createdAt, id, title, type }) => (
               <tr key={ id }>
               <td>{ title }</td>
-              <td className={ type.toLocaleLowerCase() }>{ type === 'DEPOSIT' ? formatAmount(amount) : `-${ formatAmount(amount) }` }</td>
+              <td className={ type.toLocaleLowerCase() }>
+                { type === 'DEPOSIT' 
+                ? format.amount(amount) 
+                : `-${ format.amount(amount) }` }
+              </td>
               <td>{ category }</td>
-              <td>{ formatDate(createdAt) }</td>
+              <td>{ format.date(createdAt) }</td>
             </tr>
             ))
           }

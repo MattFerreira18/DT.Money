@@ -3,7 +3,7 @@ import { darken, transparentize } from 'polished';
 
 export const Container = styled.form`
   h2 {
-    color: var(--text-title);
+    color: ${({theme}) => theme.colors["text-title"]};
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -48,7 +48,7 @@ export const RadioBox = styled.button<RadioBoxProps>`
       display: inline-block;
       margin-left: 1rem;
       font-size: 1rem;
-      color: var(--text-title);
+      color: ${({theme}) => theme.colors["text-title"]};
     }
 
     &:hover {

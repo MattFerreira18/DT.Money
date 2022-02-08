@@ -11,11 +11,11 @@ export const Container = styled.input`
   font-size: 1rem;
 
   &::placeholder {
-    color: var(--text-body);
+    color: ${({theme}) => theme.colors["text-body"]};
   }
 
   &:focus{ 
-    border: 1px solid var(--blue-light);
+    border: 1px solid ${({theme}) => theme.colors["blue-light"]};
     outline: none;
   }
 

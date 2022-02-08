@@ -1,11 +1,11 @@
+import { format } from '../../../utils/format';
+import { useTransactions } from '../../../app/hooks/useTransactions';
 
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
 
 import { Container } from './styles';
-import { formatAmount } from '../../utils/formatAmount';
-import { useTransactions } from '../../hooks/useTransactions';
 
 export function Summary() {
   const { transactions } = useTransactions();
@@ -32,21 +32,21 @@ export function Summary() {
           <p>Entradas</p>
           <img src={incomeImg} alt="entradas" />
         </header>
-        <strong>{ formatAmount(summary.deposits) }</strong>
+        <strong>{ format.amount(summary.deposits) }</strong>
       </div>
       <div>
         <header>
           <p>Saidas</p>
           <img src={outcomeImg} alt="saidas" />
         </header>
-        <strong>-{ formatAmount(summary.withdraws) }</strong>
+        <strong>-{ format.amount(summary.withdraws) }</strong>
       </div>
       <div className={ `highlight-background ${summary.total >= 0 ? 'positive' : 'negative' }` }>
         <header>
           <p>Total</p>
           <img src={totalImg} alt="total" />
         </header>
-        <strong>{ formatAmount(summary.total) }</strong>
+        <strong>{ format.amount(summary.total) }</strong>
       </div>
     </Container>
   )

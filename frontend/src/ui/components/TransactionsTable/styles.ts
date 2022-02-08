@@ -8,7 +8,7 @@ export const Container = styled.div`
     border-spacing: 0 0.5rem;
 
     th {
-      color: var(--text-body);
+      color: ${({theme}) => theme.colors["text-body"]};
       font-weight: 400;
       padding: 1rem 2rem;
       text-align: left;
@@ -27,7 +27,7 @@ export const Container = styled.div`
           
         padding-left: 0;
         font-size: 1.6rem;
-        color: var(--text-title);
+        color: ${({theme}) => theme.colors["text-title"]};
       }
     }
 
@@ -49,8 +49,8 @@ export const Container = styled.div`
       td {
       padding: 1rem 2rem;
       border: 0;
-      background: var(--shape);
-      color: var(--text-body);
+      background: ${({theme}) => theme.colors.shape};
+      color: ${({theme}) => theme.colors["text-body"]};
       border-radius: 0.25rem;
       /* border: 1px solid red; */
 
@@ -79,15 +79,15 @@ export const Container = styled.div`
       }
 
       &:first-child {
-        color: var(--text-title);
+        color: ${({theme}) => theme.colors["text-title"]};
       }
 
       &.deposit {
-        color: var(--green);
+        color: ${({theme}) => theme.colors.green};
       }
 
       &.withdraw {
-        color: var(--red);
+        color: ${({theme}) => theme.colors.red};
       }
     }
     }

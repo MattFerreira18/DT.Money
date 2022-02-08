@@ -2,8 +2,8 @@ import { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 
 import { Input } from '../Input';
-import { SubmitButton } from '../buttons/SubmitButton';
-import { useTransactions } from '../../hooks/useTransactions';
+import { SubmitButton } from '../buttons';
+import { useTransactions } from '../../../app/hooks/useTransactions';
 
 import { Container, RadioBox, TransactionTypeContainer } from './styles';
 
