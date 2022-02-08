@@ -6,9 +6,10 @@ export const Container = styled.header`
 
 export const Content = styled.div`
   max-width: 1120px;
-  margin: 0 auto;
 
+  margin: 0 auto;
   padding: 2rem 1rem 12rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,13 +21,18 @@ export const Content = styled.div`
   }
 
   button {
+    height: 3rem;
+    
+    padding: 0 2rem;
+    
     font-size: 1rem;
     color: #fff;
+    
     background: ${({theme}) => theme.colors['blue-light']};
+    
     border: 0;
     border-radius: 0.25rem;
-    padding: 0 2rem;
-    height: 3rem;
+    
     transition: 200ms;
 
     &:hover {

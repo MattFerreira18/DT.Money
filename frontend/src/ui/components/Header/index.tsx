@@ -3,7 +3,7 @@ import logoImg from '../../assets/logo.svg';
 import { Container, Content } from './styles';
 
 type HeaderProps = {
-  onOpenNewTransactionModal: () => void;
+  onOpenNewTransactionModal?: () => void;
 }
 
 export function Header({ onOpenNewTransactionModal }: HeaderProps) {
