@@ -11,16 +11,27 @@ generator client {
   binaryTargets = ["native"]
 }
 
-model Transactions {
+model Transaction {
   id        String          @id @default(uuid())
   title     String          @unique
   type      TransactionType
   category  String
   amount    Float
+  user      User?            @relation(fields: [userId], references: [id])
+  userId    String?
   createdAt DateTime        @default(now())
 }
 
 enum TransactionType {
   DEPOSIT
   WITHDRAW
+}
+
+model User {
+  id                String          @id @default(uuid())
+  name              String
+  email             String          @unique
+  password          String
+  transactions      Transaction[]
+  createdAt         DateTime        @default(now())
 }
