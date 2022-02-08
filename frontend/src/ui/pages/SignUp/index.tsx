@@ -13,7 +13,7 @@ export function SignUp() {
         <Input onChange={() => console.log('value')} placeholder="Nome" value="" />
         <Input onChange={() => console.log('value')} placeholder="Email" type="email" value="" />
         <Input onChange={() => console.log('value')} placeholder="Senha" type="password" value="" />
-        <Input onChange={() => console.log('value')} placeholder="Confirma a senha" type="password" value="" />
+        <Input onChange={() => console.log('value')} placeholder="Confirme a senha" type="password" value="" />
 
         <SubmitButton title='Criar agora' />
 
