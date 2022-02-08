@@ -2,7 +2,6 @@ import { Router } from "express";
 
 import { routeNotFound } from "../middlewares/routeNotFound";
 import { authRoutes } from "./authRoutes";
-
 import { transactionRoutes } from "./transactionRoutes";
 import { usersRoutes } from "./usersRoutes";
 
