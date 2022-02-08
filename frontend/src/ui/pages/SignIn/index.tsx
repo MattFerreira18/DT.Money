@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SubmitButton } from '../../components/buttons';
+import { LinkButton, SubmitButton } from '../../components/buttons';
 import { Input } from '../../components/Input';
 
 import { Container } from './styles';
@@ -14,6 +14,8 @@ export function SignIn() {
         <Input onChange={() => console.log('value')} placeholder="Senha" value="" />
 
         <SubmitButton title='Entrar' />
+
+        <LinkButton title="Ainda não possui conta?" link="/signup" /> 
       </form>
     </Container>
   );

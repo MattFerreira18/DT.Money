@@ -47,6 +47,14 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  input {
+    transition: 250ms;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
