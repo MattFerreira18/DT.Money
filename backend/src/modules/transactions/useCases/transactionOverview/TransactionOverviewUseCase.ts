@@ -1,3 +1,4 @@
+import { HttpException } from "../../../../errors/HttpException";
 import { Transaction } from "../../entities/transaction"
 import { TransactionsRepository } from "../../repositories/TransactionsRepository"
 
@@ -15,7 +16,12 @@ export class TransactionOverviewUseCase {
   async execute({ transactionId }: IRequest): Promise<IResponse> {
     const transactionExists = await this.transactionsRepository.findById(transactionId);
 
-    if (!transactionExists) {}
+    if (!transactionExists) {
+      throw new HttpException({
+        code: 404,
+        message: 'transaction not found',
+      });
+    }
 
     return { transaction: transactionExists };
   }

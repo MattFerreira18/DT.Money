@@ -15,7 +15,7 @@ app
   .use(router)
   .use(errorHandler)
   .listen(3333, () =>
-    console.log('\n\n 🚀 server running at: http://localhost:3333')
-  );
+  console.log('\n\n 🚀 server running at: http://localhost:3333')
+  )
 
 export { app }
