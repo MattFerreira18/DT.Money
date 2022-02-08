@@ -10,8 +10,8 @@ export function SignIn() {
     <Container>
       <form>
         <h2>Login</h2>
-        <Input onChange={() => console.log('value')} placeholder="Email" value="" />
-        <Input onChange={() => console.log('value')} placeholder="Senha" value="" />
+        <Input onChange={() => console.log('value')} placeholder="Email" type="email" value="" />
+        <Input onChange={() => console.log('value')} placeholder="Senha" type="password" value="" />
 
         <SubmitButton title='Entrar' />
 

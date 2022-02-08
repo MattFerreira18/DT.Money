@@ -12,6 +12,10 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  @media (max-width: 480px) {
+    height: calc(100vh - 13rem);
+  }
+
   form {
     max-width: 576px;
     
@@ -26,6 +30,14 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.colors["text-title"]};
       font-size: 1.5rem;
       margin-bottom: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      height: 100%;
+
+      padding-top: 5rem;
+
+      border-radius: 0;
     }
   }
 `;

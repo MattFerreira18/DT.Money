@@ -11,9 +11,9 @@ export function SignUp() {
       <form>
         <h2>Criar conta</h2>
         <Input onChange={() => console.log('value')} placeholder="Nome" value="" />
-        <Input onChange={() => console.log('value')} placeholder="Email" value="" />
-        <Input onChange={() => console.log('value')} placeholder="Senha" value="" />
-        <Input onChange={() => console.log('value')} placeholder="Confirma a senha" value="" />
+        <Input onChange={() => console.log('value')} placeholder="Email" type="email" value="" />
+        <Input onChange={() => console.log('value')} placeholder="Senha" type="password" value="" />
+        <Input onChange={() => console.log('value')} placeholder="Confirma a senha" type="password" value="" />
 
         <SubmitButton title='Criar agora' />
 
