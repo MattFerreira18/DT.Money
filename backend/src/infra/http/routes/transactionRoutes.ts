@@ -8,17 +8,17 @@ const transactionRouter = Router();
 
 
 transactionRouter
-  .get('/all', (req, res) => {
-    GetTransactionsCore.init(req, res);
+  .get('/all', (req, res, next) => {
+    GetTransactionsCore.init(req, res, next);
   })
-  .get('/:id', (req, res) => {
-    TransactionOverviewCore.init(req, res);
+  .get('/:id', (req, res, next) => {
+    TransactionOverviewCore.init(req, res, next);
   })
-  .post('/', (req, res) => {
-    CreateTransactionCore.init(req, res);
+  .post('/', (req, res, next) => {
+    CreateTransactionCore.init(req, res, next);
   })
-  .delete('/:id', (req, res) => {
-    RemoveTransactionCore.init(req, res);
+  .delete('/:id', (req, res, next) => {
+    RemoveTransactionCore.init(req, res, next);
   })
 
 export { transactionRouter }

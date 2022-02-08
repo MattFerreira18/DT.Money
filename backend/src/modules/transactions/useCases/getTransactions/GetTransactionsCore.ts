@@ -5,13 +5,14 @@ import { GetTransactionsController } from './GetTransactionsController';
 import { GetTransactionsUseCase } from './GetTransactionsUseCase';
 
 export class GetTransactionsCore {
-  static init(req: Http.Request, res: Http.Response) {
+  static init(req: Http.Request, res: Http.Response, next: Http.Next) {
     const transactionsRepository = new TransactionsRepository(repository);
 
     const getTransactionsUseCase = new GetTransactionsUseCase(transactionsRepository);
 
     const getTransactionsController = new GetTransactionsController(getTransactionsUseCase);
 
-    return getTransactionsController.handle({ req, res });
+    return getTransactionsController.handle({ req, res, next });
+
   }
 }

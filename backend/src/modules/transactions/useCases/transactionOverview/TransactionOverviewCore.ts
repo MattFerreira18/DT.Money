@@ -5,13 +5,13 @@ import { TransactionOverviewController } from "./TransactionOverviewController";
 import { TransactionOverviewUseCase } from "./TransactionOverviewUseCase";
 
 export class TransactionOverviewCore {
-  static init(req: Http.Request, res: Http.Response) {
+  static init(req: Http.Request, res: Http.Response, next: Http.Next) {
     const transactionsRepository = new TransactionsRepository(repository);
 
     const transactionOverviewUseCase = new TransactionOverviewUseCase(transactionsRepository);
 
     const transactionOverviewController = new TransactionOverviewController(transactionOverviewUseCase);
 
-    return transactionOverviewController.handle({ req, res });
+    return transactionOverviewController.handle({ req, res, next });
   }
 }

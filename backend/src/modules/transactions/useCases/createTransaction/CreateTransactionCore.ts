@@ -5,7 +5,7 @@ import { CreateTransactionController } from "./CreateTransactionController";
 import { Http } from '../../../../@types/http';
 
 export class CreateTransactionCore {
-  static init(req: Http.Request, res: Http.Response) {
+  static init(req: Http.Request, res: Http.Response, next: Http.Next) {
     const transactionsRepository = new TransactionsRepository(repository);
 
   const createTransactionUseCase = new CreateTransactionUseCase(
@@ -16,6 +16,6 @@ export class CreateTransactionCore {
     createTransactionUseCase,
   );
 
-  return createTransactionController.handle({ req, res });
+  return createTransactionController.handle({ req, res, next });
   }
 }

@@ -1,13 +1,14 @@
-import { HttpException } from 'src/errors/HttpException';
-import { Http } from '../../../@types/http';
+import { Http } from "src/@types/http";
+import { HttpException } from "src/errors/HttpException";
 
-export function errorHandler(err: HttpException | Error, req: Http.Request, res: Http.Response, next: Http.Next) {
-  console.log('---------');
-  console.log('WHERE WHERE WHERE');
-  console.log('---------');
 
-  if (err instanceof HttpException) {
-    return res.status(err?.code).json(err);
+export function errorHandler(
+  error: HttpException | Error,
+  req: Http.Request,
+  res: Http.Response,
+) {
+  if (error instanceof HttpException) {
+    return res.status(error?.code).json(error);
   }
 
   return res.status(500).json({

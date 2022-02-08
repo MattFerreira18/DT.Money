@@ -13,4 +13,5 @@ export namespace Http {
 export type HttpServer = {
   req: Http.Request;
   res: Http.Response;
+  next: Http.Next;
 }
