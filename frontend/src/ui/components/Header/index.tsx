@@ -3,8 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 
 import { NewTransactionModal } from '../NewTransactionModal';
-
-import logoImg from '../../assets/logo.svg';
+import { Logo } from './Logo';
 
 import { Container, Content, NewTransactionButton, UserWrapper } from './styles';
 
@@ -28,7 +27,7 @@ export function Header() {
     <>
       <Container>
         <Content>
-          <img src={logoImg} alt="dt.money" />
+          <Logo />
           <div>
             {
               showNewTransactionButton && (

@@ -18,12 +18,6 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
   }
-
-  img {
-    @media(max-width:480px) {
-      transform: scale(0.9, 0.9);
-    }
-  }
 `;
 
 export const NewTransactionButton = styled.button`
