@@ -1,5 +1,6 @@
-import { Route, Routes as ReactRouterRoutes } from 'react-router-dom';
+import { Route, Routes as ReactRouterRoutes, useLocation, Navigate } from 'react-router-dom';
 
+import { useAuth } from '../hooks/useAuth';
 import { DashboardPage } from '../../ui/pages/Dashboard';
 import { SignUp } from '../../ui/pages/SignUp';
 import { SignIn } from '../../ui/pages/SignIn';
@@ -11,8 +12,24 @@ export function Routes() {
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn />} />
 
-      <Route path='/dashboard' element={<DashboardPage />} />
-      <Route path='/me' element={<Profile />} />
+      <Route path='/dashboard' element={<RequireAuth component={DashboardPage} />} />
+      <Route path='/me' element={<RequireAuth component={Profile} />} />
+
     </ReactRouterRoutes>
   );
+}
+
+export function RequireAuth({ component: ReactComponent }: { component: React.ComponentType }) {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+  
+  if (!isAuthenticated) {
+    return <Navigate
+      to="/signin"
+      state={{ from: location }}
+      replace
+    />
+  }
+
+  return <ReactComponent />;
 }
