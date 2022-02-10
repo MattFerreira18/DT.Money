@@ -37,7 +37,6 @@ export const RadioBox = styled.button<RadioBoxProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 200ms;
 
     img {
       width: 20px;

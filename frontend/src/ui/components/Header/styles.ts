@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-  background: ${({theme}) => theme.colors.blue};
+  background: ${({ theme }) => theme.colors.blue};
 `;
 
 export const Content = styled.div`
@@ -14,30 +14,51 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  div {
+    display: flex;
+    align-items: center;
+  }
+
   img {
     @media(max-width:480px) {
       transform: scale(0.9, 0.9);
     }
   }
+`;
 
-  button {
-    height: 3rem;
+export const NewTransactionButton = styled.button`
+  height: 3rem;
     
-    padding: 0 2rem;
+  padding: 0 2rem;
     
-    font-size: 1rem;
-    color: #fff;
+  font-size: 1rem;
+  color: #fff;
     
-    background: ${({theme}) => theme.colors['blue-light']};
+  background: ${({ theme }) => theme.colors['blue-light']};
     
-    border: 0;
-    border-radius: 0.25rem;
-    
-    transition: 200ms;
+  margin-right: 1rem;
+  border-radius: 0.25rem;
 
-    &:hover {
-      filter: brightness(0.9);
-    }
+  &:hover {
+    filter: brightness(0.9);
   }
 `;
 
+export const UserWrapper = styled.button`
+  height: 3.4rem;
+  width: 3.4rem;
+
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors['blue-light']};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.6rem;
+  color: #fff;
+  
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;

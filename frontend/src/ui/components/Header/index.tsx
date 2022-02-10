@@ -1,39 +1,48 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AiOutlineUser } from 'react-icons/ai';
 
 import { NewTransactionModal } from '../NewTransactionModal';
 
 import logoImg from '../../assets/logo.svg';
 
-import { Container, Content } from './styles';
+import { Container, Content, NewTransactionButton, UserWrapper } from './styles';
 
 export function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [newTransactionModalIsOpen, setNewTransactionModalIsOpen] = useState(false);
   const [showNewTransactionButton, setShowNewTransactionButton] = useState(false);
-  const router = useLocation();
 
-  
   useEffect(() => {
-    const isDashboardPage = router.pathname.endsWith('dashboard');
+    const isDashboardPage = location.pathname.endsWith('dashboard');
 
     setShowNewTransactionButton(isDashboardPage);
-  }, [router.pathname]);
+  }, [location.pathname]);
+
+  function handleGotoProfile() {
+    navigate('/me');
+  }
 
   return (
     <>
       <Container>
         <Content>
           <img src={logoImg} alt="dt.money" />
-          {
-            showNewTransactionButton && (
-              <button
-                type="button"
-                onClick={() => setNewTransactionModalIsOpen(true)}
-              >
-                Nova Transação
-              </button>
-            )
-          }
+          <div>
+            {
+              showNewTransactionButton && (
+                <NewTransactionButton
+                  onClick={() => setNewTransactionModalIsOpen(true)}
+                >
+                  Nova Transação
+                </NewTransactionButton>
+              )
+            }
+            <UserWrapper onClick={() => handleGotoProfile()}>
+              <AiOutlineUser />
+            </UserWrapper>
+          </div>
         </Content>
       </Container>
 
