@@ -6,7 +6,7 @@ export class TransactionsRepository {
   constructor(private readonly repository: Repository) { }
 
   async create({ title, category, type, amount }: ICreateTransactionDto): Promise<Transaction> {
-    const transaction = await this.repository.transactions.create({
+    const transaction = await this.repository.transaction.create({
       data: {
         title,
         category,
@@ -19,13 +19,13 @@ export class TransactionsRepository {
   }
 
   async findAll(): Promise<Transaction[]> {
-    const transactions = await this.repository.transactions.findMany();
+    const transactions = await this.repository.transaction.findMany();
 
     return transactions;
   }
 
   async findById(id: string): Promise<Transaction> {
-    const transaction = await this.repository.transactions.findUnique({
+    const transaction = await this.repository.transaction.findUnique({
       where: {
         id,
       }
@@ -35,7 +35,7 @@ export class TransactionsRepository {
   }
 
   async findByTitle(title: string): Promise<Transaction> {
-    const transaction = await this.repository.transactions.findUnique({
+    const transaction = await this.repository.transaction.findUnique({
       where: {
         title,
       }
@@ -44,8 +44,24 @@ export class TransactionsRepository {
     return transaction;
   }
 
+  async findByUserId(userId: string): Promise<[Transaction[], number]> {
+    const transactions = await this.repository.transaction.findMany({
+      where: {
+        userId
+      },
+    });
+
+    const total = await this.repository.transaction.count({
+      where: {
+        userId
+      },
+    });
+
+    return [transactions, total];
+  }
+
   async remove(id: string): Promise<void> {
-    await this.repository.transactions.delete({
+    await this.repository.transaction.delete({
       where: {
         id
       }

@@ -11,7 +11,7 @@ const transactionRoutes = Router();
 
 transactionRoutes
   .get(
-    '/all',
+    '/',
     ensureAuthenticated,
     (req, res, next) => GetTransactionsCore.init(req, res, next),
   )

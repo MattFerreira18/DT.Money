@@ -1,6 +1,10 @@
 import { Transaction } from "../../entities/transaction";
 import { TransactionsRepository } from "../../repositories/TransactionsRepository"
 
+interface IRequest {
+  userId: string
+}
+
 interface IResponse {
   transactions: Transaction[];
   total: number;
@@ -9,9 +13,8 @@ interface IResponse {
 export class GetTransactionsUseCase {
   constructor(private readonly transactionsRepository: TransactionsRepository) { }
 
-  async execute(): Promise<IResponse> {
-    const transactions = await this.transactionsRepository.findAll();
-    const total = transactions.length;
+  async execute({ userId }: IRequest): Promise<IResponse> {
+    const [transactions, total] = await this.transactionsRepository.findByUserId(userId);
 
     return { transactions, total };
   }

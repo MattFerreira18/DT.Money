@@ -6,7 +6,9 @@ export class GetTransactionsController {
 
   async handle({ req, res, next }: HttpServer): Promise<Http.Response> {
     try {
-      const result = await this.getTransactionsUseCase.execute();
+      const { id: userId } = req.user;
+
+      const result = await this.getTransactionsUseCase.execute({ userId });
 
       return res.status(200).json(result);
     } catch (err) {
