@@ -17,11 +17,13 @@ transactionRoutes
     (req, res, next) => GetTransactionsCore.init(req, res, next),
   )
   .get(
-    '/:id', (req, res, next) => TransactionOverviewCore.init(req, res, next),
+    '/:id',
+    ensureAuthenticated,
+    (req, res, next) => TransactionOverviewCore.init(req, res, next),
   )
   .get('/statistics',
-  ensureAuthenticated,
-  (req, res, next) => transactionsStatisticsCore.init(req, res, next),
+    ensureAuthenticated,
+    (req, res, next) => transactionsStatisticsCore.init(req, res, next),
   )
   .post(
     '/',
