@@ -60,6 +60,27 @@ export class TransactionsRepository {
     return [transactions, total];
   }
 
+  async count(filter?: 'DEPOSIT' | 'WITHDRAW', userId?: string): Promise<number> {
+    let total: number;
+
+    if (filter) {
+      const result = await this.repository.transaction.aggregate({
+        where: {
+          type: filter,
+        },
+        _count: {
+          amount: true,
+        },
+      });
+
+      total = result._count.amount;
+    } else {
+      total = await this.repository.transaction.count({ where: { userId } });
+    }
+
+    return total;
+  }
+
   async remove(id: string): Promise<void> {
     await this.repository.transaction.delete({
       where: {
