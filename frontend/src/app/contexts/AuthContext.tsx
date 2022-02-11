@@ -41,7 +41,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const token = localStorage.getItem('dt-money.access_token');
 
+    setIsAuthenticated(!!token);
+
     if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(token)}`;
+
+      console.log(api.defaults.headers)
       api.get<GetUserResponse>('/users/profile')
         .then(response => {
           if (response.status === 200) {
@@ -54,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           }
         });
     }
-  }, [isAuthenticated]);
+  }, []);
 
   async function signIn(email: string, password: string) {
     try {
@@ -71,7 +76,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           email: userData.email,
         });
   
-        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   
         localStorage.setItem('dt-money.access_token', JSON.stringify(token));
 

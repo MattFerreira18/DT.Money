@@ -11,7 +11,7 @@ export class TokenProvider {
 
   verify<TokenPayload = string>(token: string): TokenPayload {
     try {
-      const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+       const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
 
       const { sub: subject } = decoded as unknown as { sub: TokenPayload };
 

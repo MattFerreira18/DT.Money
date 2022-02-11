@@ -1,4 +1,5 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../../app/hooks/useAuth';
 import { LinkButton, SubmitButton } from '../../components/buttons';
@@ -12,8 +13,15 @@ interface SignInData {
 }
 
 export function SignIn() {
+  const navigate = useNavigate();
   const [signInData, setSignInData] = useState({} as SignInData);
-  const { signIn } = useAuth();
+  const { signIn, isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+  }, [isAuthenticated, navigate]);
 
   async function handleSignIn(event: FormEvent) {
     event.preventDefault();
