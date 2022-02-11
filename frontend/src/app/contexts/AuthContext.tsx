@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../services/api';
 
@@ -33,8 +34,9 @@ type GetUserResponse = {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const navigate = useNavigate();
   const [user, setUser] = useState({} as User);
-  const [isAuthenticated] = useState(!user);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('dt-money.access_token');
@@ -72,12 +74,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
   
         localStorage.setItem('dt-money.access_token', JSON.stringify(token));
+
+        setIsAuthenticated(true);
+
+        navigate('/dashboard');
       }
     } catch (err) { }
   }
 
   async function signOut() {
     localStorage.clear();
+    setIsAuthenticated(false);
 
     delete api.defaults.headers.common.Authorization;
   }
