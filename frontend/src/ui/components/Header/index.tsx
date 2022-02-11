@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 
 import { NewTransactionModal } from '../NewTransactionModal';
+import { useAuth } from '../../../app/hooks/useAuth';
 import { Logo } from './Logo';
 
 import { Container, Content, NewTransactionButton, UserWrapper } from './styles';
@@ -10,6 +11,7 @@ import { Container, Content, NewTransactionButton, UserWrapper } from './styles'
 export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const [newTransactionModalIsOpen, setNewTransactionModalIsOpen] = useState(false);
   const [showNewTransactionButton, setShowNewTransactionButton] = useState(false);
 
@@ -38,9 +40,13 @@ export function Header() {
                 </NewTransactionButton>
               )
             }
-            <UserWrapper onClick={() => handleGotoProfile()}>
-              <AiOutlineUser />
-            </UserWrapper>
+            {
+              isAuthenticated && (
+                <UserWrapper onClick={() => handleGotoProfile()}>
+                  <AiOutlineUser />
+                </UserWrapper>
+              )
+            }
           </div>
         </Content>
       </Container>
