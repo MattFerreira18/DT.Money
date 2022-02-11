@@ -6,7 +6,7 @@ export function errorHandler(
   error: HttpException | Error,
   req: Http.Request,
   res: Http.Response,
-) {
+  ) {
   if (error instanceof HttpException) {
     return res.status(error?.code).json(error);
   }

@@ -49,6 +49,7 @@ export function Profile() {
 
     api.get<StatisticsData>('/transactions/statistics')
       .then(response => {
+      console.log("🚀 ~ file: index.tsx ~ line 52 ~ useEffect ~ response", response.data)
         if (response.status === 200) {
           setStatisticsData(response.data);
         }

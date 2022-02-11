@@ -16,14 +16,14 @@ transactionRoutes
     ensureAuthenticated,
     (req, res, next) => GetTransactionsCore.init(req, res, next),
   )
+  .get('/statistics',
+    ensureAuthenticated,
+    (req, res, next) => transactionsStatisticsCore.init(req, res, next),
+  )
   .get(
     '/:id',
     ensureAuthenticated,
     (req, res, next) => TransactionOverviewCore.init(req, res, next),
-  )
-  .get('/statistics',
-    ensureAuthenticated,
-    (req, res, next) => transactionsStatisticsCore.init(req, res, next),
   )
   .post(
     '/',
