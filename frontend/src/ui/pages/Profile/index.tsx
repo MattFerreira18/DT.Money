@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 
 import { api } from '../../../app/services/api';
 import { format } from '../../../utils/format';
@@ -10,7 +10,9 @@ import { Container, EditProfile, Statistic } from './styles';
 interface UserData {
   name: string;
   email: string;
-  created_at: string;
+  password?: string;
+  passwordConfirmation?: string;
+  // created_at: string;
 }
 
 interface StatisticsData {
@@ -27,15 +29,16 @@ export function Profile() {
   const [userData, setUserData] = useState({} as UserData);
   const [statisticsData, setStatisticsData] = useState({} as StatisticsData);
   const [isEditingPassword, setIsEditingPassword] = useState(false);
-  const [newPassword, setNewPassword] = useState('');
 
   useEffect(() => {
-    if (newPassword.length > 0) {
-      setIsEditingPassword(true);
-    } else {
-      setIsEditingPassword(false);
+    if (userData.password) {
+      if (userData.password.length > 0) {
+        setIsEditingPassword(true);
+      } else {
+        setIsEditingPassword(false);
+      }
     }
-  }, [newPassword]);
+  }, [userData.password]);
 
   useEffect(() => {
     api.get<UserResponseData>('/users/profile')
@@ -49,12 +52,28 @@ export function Profile() {
 
     api.get<StatisticsData>('/transactions/statistics')
       .then(response => {
-      console.log("🚀 ~ file: index.tsx ~ line 52 ~ useEffect ~ response", response.data)
+        console.log("🚀 ~ file: index.tsx ~ line 52 ~ useEffect ~ response", response.data)
         if (response.status === 200) {
           setStatisticsData(response.data);
         }
       })
   }, []);
+
+  async function handleUpdateUser(event: FormEvent) {
+    event.preventDefault();
+
+    if (userData.password && userData.password !== userData.passwordConfirmation) {
+      return;
+    }
+
+    delete userData.passwordConfirmation;
+
+    const response = await api.patch('/users', userData);
+
+    if (response.status === 204) {
+      window.location.reload();
+    }
+  }
 
   return (
     <Container>
@@ -74,19 +93,33 @@ export function Profile() {
       </div>
 
       <EditProfile>
-        <form>
+        <form onSubmit={(e) => handleUpdateUser(e)}>
           <h2>Perfil</h2>
-          <Input value={userData.name} placeholder='Nome' onChange={() => { }} />
-          <Input value={userData.email} placeholder='Email' type="email" onChange={() => { }} />
-          <Input onChange={(e) => setNewPassword(e.target.value)} placeholder="Nova senha" type="password" value={newPassword} />
+          <Input
+            value={userData.name}
+            placeholder='Nome'
+            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+          />
+          <Input
+            value={userData.email}
+            placeholder='Email'
+            type="email"
+            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+          />
+          <Input
+            onChange={(e) => setUserData({ ...userData, password: e.target.value })}
+            placeholder="Nova senha"
+            type="password"
+            value={userData.password}
+          />
 
           {
             isEditingPassword && (
               <Input
-                value=""
+                value={userData.passwordConfirmation}
                 type="password"
                 placeholder="Confirme a nova senha"
-                onChange={() => console.log('value')}
+                onChange={(e) => setUserData({ ...userData, passwordConfirmation: e.target.value })}
               />
             )
           }
