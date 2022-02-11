@@ -29,8 +29,8 @@ export class App {
   }
 
   private server() {
-    this.app.listen(3333, () => {
-      console.log('\n\n 🚀 server running at: http://localhost:3333');
+    this.app.listen(process.env.SERVER_PORT, () => {
+      console.log(`\n\n 🚀 server running at: http://localhost:${process.env.SERVER_PORT}`);
     });
   }
 }

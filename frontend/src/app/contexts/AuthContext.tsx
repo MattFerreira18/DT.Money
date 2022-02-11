@@ -61,20 +61,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
       });
 
-      if (response.status !== 200) {
-        throw new Error('incorrect email or password');
+      if (response.status === 200) {
+        const { user: userData, token } = response.data;
+
+        setUser({
+          name: userData.name,
+          email: userData.email,
+        });
+  
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  
+        localStorage.setItem('dt-money.access_token', JSON.stringify(token));
       }
-
-      const { user: userData, token } = response.data;
-
-      setUser({
-        name: userData.name,
-        email: userData.email,
-      });
-
-      api.defaults.headers.common.Authorization = `Bearer ${token}`;
-
-      localStorage.setItem('dt-money.access_token', JSON.stringify(token));
     } catch (err) { }
   }
 
