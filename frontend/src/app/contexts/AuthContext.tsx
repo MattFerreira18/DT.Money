@@ -2,13 +2,14 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { api } from '../services/api';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-type User = {
+interface User {
   name: string;
   email: string;
 }
 
-type AuthContextData = {
+interface AuthContextData {
   user: User;
   isAuthenticated: boolean;
   signIn: (email: string, password: string) => Promise<void>;
@@ -19,7 +20,7 @@ type AuthProviderProps = {
   children: React.ReactNode;
 }
 
-type SignInResponse = {
+interface SignInResponse {
   user: {
     name: string;
     email: string;
@@ -27,7 +28,7 @@ type SignInResponse = {
   token: string;
 }
 
-type GetUserResponse = {
+interface GetUserResponse {
   user: User;
 }
 
@@ -37,16 +38,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
   const [user, setUser] = useState({} as User);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, updateTokenStorage, destroyTokenStorage] = 
+    useLocalStorage<string>('dt-money.access_token', '');
 
   useEffect(() => {
-    const token = localStorage.getItem('dt-money.access_token');
-
     setIsAuthenticated(!!token);
 
-    if (token) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(token)}`;
+    if (typeof token === 'string') {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      console.log(api.defaults.headers)
       api.get<GetUserResponse>('/users/profile')
         .then(response => {
           if (response.status === 200) {
@@ -59,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           }
         });
     }
-  }, []);
+  }, [token]);
 
   async function signIn(email: string, password: string) {
     try {
@@ -69,26 +69,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
 
       if (response.status === 200) {
-        const { user: userData, token } = response.data;
+        const { user: userData, token: userToken } = response.data;
 
         setUser({
           name: userData.name,
           email: userData.email,
         });
-  
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  
-        localStorage.setItem('dt-money.access_token', JSON.stringify(token));
 
-        setIsAuthenticated(true);
-
+        updateTokenStorage(userToken);
+        setIsAuthenticated(!!userToken);
         navigate('/dashboard');
       }
     } catch (err) { }
   }
 
   async function signOut() {
-    localStorage.clear();
+    destroyTokenStorage();
     setIsAuthenticated(false);
 
     delete api.defaults.headers.common.Authorization;
