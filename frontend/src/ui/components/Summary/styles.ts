@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+
   margin-top: -10rem;
 
   @media(max-width: 480px) {
@@ -12,10 +13,12 @@ export const Container = styled.div`
   }
 
   div {
-    background: ${({theme}) => theme.colors.shape};
     padding: 1.5rem;
-    border-radius: 0.25rem;
+    
+    background: ${({theme}) => theme.colors.shape};
     color: ${({theme}) => theme.colors["text-title"]};
+
+    border-radius: 0.25rem;
 
   @media(max-width: 480px) {
     width: 20rem;
@@ -39,7 +42,9 @@ export const Container = styled.div`
 
     strong {
       display: block;
+
       margin-top: 1rem;
+      
       font-size: 2rem;
       font-weight: 500;
       line-height: 3rem;

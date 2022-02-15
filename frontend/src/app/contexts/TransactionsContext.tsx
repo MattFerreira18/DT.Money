@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useEffect, useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
 
+import { useAuth } from '../hooks/useAuth';
 import { api } from '../services/api';
 
 type Transaction = {
@@ -33,20 +33,24 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   useEffect(() => {
     if (isAuthenticated) {
       api.get('/transactions')
-      .then(response => setTransactions(response.data));
+        .then(response => setTransactions(response.data));
     }
   }, []);
   
   async function createTransaction(transaction: TransactionInput) {
     const response = await api.post('/transactions', transaction);
-
     const transactionData = response.data;
 
     setTransactions(prev => ([ ...prev, transactionData ]));
   }
 
+  const contextData = {
+    transactions,
+    createTransaction,
+  };
+
   return (
-    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
+    <TransactionsContext.Provider value={contextData}>
       { children }
     </TransactionsContext.Provider>
   );

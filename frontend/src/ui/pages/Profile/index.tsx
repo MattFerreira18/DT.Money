@@ -1,7 +1,7 @@
-import React, { 
-  FormEvent, 
-  useEffect, 
-  useState, 
+import React, {
+  FormEvent,
+  useEffect,
+  useState,
 } from 'react';
 
 import { useTheme } from '../../../app/hooks/useTheme';
@@ -10,10 +10,10 @@ import { format } from '../../../utils/format';
 import { SubmitButton } from '../../components/buttons';
 import { Input, SwitchInput } from '../../components/inputs';
 
-import { 
-  Container, 
-  EditProfile, 
-  SettingsSection, 
+import {
+  Container,
+  EditProfile,
+  SettingsSection,
   Statistic,
 } from './styles';
 
@@ -139,7 +139,10 @@ export function Profile() {
                 value={userData.passwordConfirmation}
                 type="password"
                 placeholder="Confirme a nova senha"
-                onChange={(e) => setUserData({ ...userData, passwordConfirmation: e.target.value })}
+                onChange={(e) => setUserData({
+                  ...userData,
+                  passwordConfirmation: e.target.value,
+                })}
               />
             )
           }
@@ -151,8 +154,8 @@ export function Profile() {
         <h2>Configurações</h2>
 
         <SwitchInput
-          onChange={() => handleChangeTheme()} 
-          title='modo escuro' 
+          onChange={() => handleChangeTheme()}
+          title='modo escuro'
           isChecked={theme === 'dark'}
         />
 

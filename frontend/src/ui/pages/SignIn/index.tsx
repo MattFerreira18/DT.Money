@@ -15,8 +15,8 @@ interface SignInData {
 
 export function SignIn() {
   const navigate = useNavigate();
-  const [signInData, setSignInData] = useState({} as SignInData);
   const { signIn, isAuthenticated } = useAuth();
+  const [signInData, setSignInData] = useState({} as SignInData);
   const [messageModalIsOpen, setMessageModalIsOpen] = useState(false);
 
   useEffect(() => {
@@ -42,14 +42,20 @@ export function SignIn() {
       <form onSubmit={(e) => handleSignIn(e)}>
         <h2>Login</h2>
         <Input
-          onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
+          onChange={(e) => setSignInData({ 
+            ...signInData, 
+            email: e.target.value, 
+          })}
           placeholder="Email" 
           type="email" 
           value={signInData.email}
         />
 
         <Input
-          onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
+          onChange={(e) => setSignInData({ 
+            ...signInData, 
+            password: e.target.value,
+          })}
           placeholder="Senha" 
           type="password"
           value={signInData.password}

@@ -23,7 +23,10 @@ type SubmitEventProps = {
   category: string;
 }
 
-export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
+export function NewTransactionModal({ 
+  isOpen, 
+  onRequestClose,
+}: NewTransactionModalProps) {
   const { createTransaction } = useTransactions();
   const [data, setData] = useState<SubmitEventProps>({} as SubmitEventProps);
 
@@ -69,13 +72,19 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
         type="text" 
         placeholder="Titulo"
         value={ data.title }
-        onChange={ (e) => setData((prev) => ({ ...prev, title: e.target.value })) }
+        onChange={ (e) => setData((prev) => ({ 
+          ...prev, 
+          title: e.target.value,
+        })) }
       />
 
       <Input 
         type="number" 
         placeholder="Valor"
-        onChange={ (e) => setData((prev) => ({ ...prev, amount: Number(e.target.value) })) }
+        onChange={ (e) => setData((prev) => ({ 
+          ...prev, 
+          amount: Number(e.target.value),
+        })) }
         value={ data.amount }  
       />
 

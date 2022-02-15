@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+
 export function useLocalStorage<StorageData = string>(
   key: string,
   initialValue: StorageData,
-): [StorageData | null, (newValue: StorageData) => void, () => void] {
+  ): [StorageData | null, (newValue: StorageData) => void, () => void] {
   const getStoredData = useCallback(() => {
     const storedValue = localStorage.getItem(key);
 

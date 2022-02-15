@@ -1,4 +1,9 @@
-import { Route, Routes as ReactRouterRoutes, useLocation, Navigate } from 'react-router-dom';
+import { 
+  Route, 
+  Routes as ReactRouterRoutes, 
+  useLocation,
+  Navigate, 
+} from 'react-router-dom';
 
 import { useAuth } from '../hooks/useAuth';
 import { DashboardPage } from '../../ui/pages/Dashboard';

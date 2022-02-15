@@ -35,7 +35,6 @@ export const Statistic = styled.div`
   padding: 3rem;
 
   border-radius: 0.25rem;
-  box-shadow: 0px 6px 20px 6px rgba(0, 0, 0, 0.2);
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -81,8 +80,7 @@ export const EditProfile = styled.section`
   form {
     padding: 3rem;
     
-    background: ${({ theme }) => theme.colors.shape};;
-    box-shadow: 0px 6px 20px 6px rgba(0, 0, 0, 0.2);
+    background: ${({ theme }) => theme.colors.shape};
 
     border-radius: 0.25rem;
   }
@@ -96,5 +94,4 @@ export const SettingsSection = styled.section`
   padding: 3rem;
 
   border-radius: 0.25rem;
-  box-shadow: 0px 6px 20px 6px rgba(0, 0, 0, 0.2);
 `;

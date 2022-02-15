@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,17 +12,18 @@ export const Container = styled.div`
   }
 
   .switch {
-    position: relative;
-    display: inline-block;
-
     width: 52px;
     height: 28px;
+
+    position: relative;
+    display: inline-block;
   }
 
   .switch input {
-    opacity: 0;
     width: 0;
     height: 0;
+    
+    opacity: 0;
 
     &:checked + .slider {
       background: ${({ theme }) => theme.colors.green};

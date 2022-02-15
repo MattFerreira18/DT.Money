@@ -21,9 +21,7 @@ export const Container = styled.div`
     
     padding: 3rem;
     
-    background: ${({ theme }) => theme.colors.background};
-    box-shadow: 0px 6px 20px 6px rgba(150, 156, 179, 0.2);
-
+    background: ${({ theme }) => theme.colors.shape};
     border-radius: 0.25rem;
 
     h2 {

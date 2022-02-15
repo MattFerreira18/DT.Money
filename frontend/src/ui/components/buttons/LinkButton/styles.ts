@@ -6,8 +6,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
 
-  a {
+  span {
     color: ${({ theme }) => theme.colors.blue};
+    cursor: pointer;
 
     &:hover {
       filter: opacity(0.8);

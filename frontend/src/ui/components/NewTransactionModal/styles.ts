@@ -5,6 +5,7 @@ export const Container = styled.form`
   h2 {
     color: ${({theme}) => theme.colors["text-title"]};
     font-size: 1.5rem;
+
     margin-bottom: 2rem;
   }
 `; 
@@ -29,11 +30,14 @@ const colors = {
 
 export const RadioBox = styled.button<RadioBoxProps>`
     height: 4rem;
+    
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: 0.25rem;
+
     background: ${(props) => props.isActive 
       ? transparentize(0.8, colors[props.activeColor])
       : 'transparent'};
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,7 +49,9 @@ export const RadioBox = styled.button<RadioBoxProps>`
 
     span {
       display: inline-block;
+      
       margin-left: 1rem;
+
       font-size: 1rem;
       color: ${({theme}) => theme.colors["text-title"]};
     }

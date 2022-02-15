@@ -12,7 +12,7 @@ export function LinkButton({ title, link }: LinkButtonProps) {
   return (
     <Link to={link}>
       <Container>
-      <a>{title}</a>
+      <span>{title}</span>
     </Container>
     </Link>
   );

@@ -5,13 +5,15 @@ export const Container = styled.div`
 
   table {
     width: 100%;
+
     border-spacing: 0 0.5rem;
 
     th {
       color: ${({theme}) => theme.colors["text-body"]};
       font-weight: 400;
-      padding: 1rem 2rem;
       text-align: left;
+
+      padding: 1rem 2rem;
 
       @media(min-width: 480px) {
         &:last-child {
@@ -37,59 +39,56 @@ export const Container = styled.div`
       }
 
       @media(max-width:480px) {
-        /* &:not(:first-child) { */
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: repeat(3, 1fr);
-          gap: 0;
-          margin-bottom: 0.6rem;
-        /* } */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 0;
+        margin-bottom: 0.6rem;
       }
 
       td {
-      padding: 1rem 2rem;
-      border: 0;
-      background: ${({theme}) => theme.colors.shape};
-      color: ${({theme}) => theme.colors["text-body"]};
-      border-radius: 0.25rem;
-      /* border: 1px solid red; */
+        padding: 1rem 2rem;
+        border: 0;
+        background: ${({theme}) => theme.colors.shape};
+        color: ${({theme}) => theme.colors["text-body"]};
+        border-radius: 0.25rem;
 
-      @media(max-width: 480px) {
-        &:first-child,
-        &:nth-child(2) {
-          grid-column-start: 1;
-          grid-column-end: 4;
+        @media(max-width: 480px) {
+          &:first-child,
+          &:nth-child(2) {
+            grid-column-start: 1;
+            grid-column-end: 4;
+          }
+
+          &:first-child {
+            font-size: 1.2rem;
+          }
+
+          &:nth-child(2) { 
+            font-size: 1.4rem;
+          }
+
+          &:nth-child(3) { 
+            text-align: start;
+          }
+
+          &:nth-child(4) { 
+            text-align: end;
+          }
         }
 
         &:first-child {
-          font-size: 1.2rem;
+          color: ${({theme}) => theme.colors["text-title"]};
         }
 
-        &:nth-child(2) { 
-          font-size: 1.4rem;
+        &.deposit {
+          color: ${({theme}) => theme.colors.green};
         }
 
-        &:nth-child(3) { 
-          text-align: start;
-        }
-
-        &:nth-child(4) { 
-          text-align: end;
+        &.withdraw {
+          color: ${({theme}) => theme.colors.red};
         }
       }
-
-      &:first-child {
-        color: ${({theme}) => theme.colors["text-title"]};
-      }
-
-      &.deposit {
-        color: ${({theme}) => theme.colors.green};
-      }
-
-      &.withdraw {
-        color: ${({theme}) => theme.colors.red};
-      }
-    }
     }
   }
 `;
