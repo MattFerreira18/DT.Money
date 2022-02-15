@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../../app/hooks/useAuth';
 import { LinkButton, SubmitButton } from '../../components/buttons';
-import { Input } from '../../components/Input';
+import { Input } from '../../components/inputs';
 
 import { Container } from './styles';
 

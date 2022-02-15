@@ -8,8 +8,7 @@ import { useTheme } from '../../../app/hooks/useTheme';
 import { api } from '../../../app/services/api';
 import { format } from '../../../utils/format';
 import { SubmitButton } from '../../components/buttons';
-import { Input } from '../../components/Input';
-import { SwitchInput } from '../../components/SwitchInput';
+import { Input, SwitchInput } from '../../components/inputs';
 
 import { 
   Container, 
