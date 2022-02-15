@@ -1,11 +1,12 @@
+import { ButtonHTMLAttributes } from "react";
 import { Container } from "./styles";
 
-type SubmitBtnProps = {
+type SubmitBtnProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   title: string;
 }
 
-export function SubmitButton({ title }: SubmitBtnProps) {
+export function SubmitButton({ title, type, ...props }: SubmitBtnProps) {
   return (
-    <Container type="submit">{ title }</Container>
+    <Container type="submit" {...props}>{ title }</Container>
   );
 }

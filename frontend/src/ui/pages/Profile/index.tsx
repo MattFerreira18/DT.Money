@@ -1,11 +1,22 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { 
+  FormEvent, 
+  useEffect, 
+  useState, 
+} from 'react';
 
+import { useTheme } from '../../../app/hooks/useTheme';
 import { api } from '../../../app/services/api';
 import { format } from '../../../utils/format';
 import { SubmitButton } from '../../components/buttons';
 import { Input } from '../../components/Input';
+import { SwitchInput } from '../../components/SwitchInput';
 
-import { Container, EditProfile, Statistic } from './styles';
+import { 
+  Container, 
+  EditProfile, 
+  SettingsSection, 
+  Statistic,
+} from './styles';
 
 interface UserData {
   name: string;
@@ -29,6 +40,7 @@ export function Profile() {
   const [userData, setUserData] = useState({} as UserData);
   const [statisticsData, setStatisticsData] = useState({} as StatisticsData);
   const [isEditingPassword, setIsEditingPassword] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (userData.password) {
@@ -52,7 +64,6 @@ export function Profile() {
 
     api.get<StatisticsData>('/transactions/statistics')
       .then(response => {
-        console.log("🚀 ~ file: index.tsx ~ line 52 ~ useEffect ~ response", response.data)
         if (response.status === 200) {
           setStatisticsData(response.data);
         }
@@ -73,6 +84,16 @@ export function Profile() {
     if (response.status === 204) {
       window.location.reload();
     }
+  }
+
+  function handleChangeTheme() {
+    const newTheme = (theme === 'light' ? 'dark' : 'light');
+
+    setTheme(newTheme);
+  }
+
+  function handleSaveSettings() {
+    window.location.reload();
   }
 
   return (
@@ -126,6 +147,19 @@ export function Profile() {
           <SubmitButton title='Atualizar' />
         </form>
       </EditProfile>
+
+      <SettingsSection>
+        <h2>Configurações</h2>
+
+        <SwitchInput
+          onChange={() => handleChangeTheme()} 
+          title='modo escuro' 
+          isChecked={theme === 'dark'}
+        />
+
+        <SubmitButton title='Salvar' onClick={() => handleSaveSettings()} />
+      </SettingsSection>
+
     </Container>
   );
 }

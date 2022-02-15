@@ -20,15 +20,22 @@ export const Container = styled.div`
 
     border-radius: 0;
   }
+
+
+  h2 {
+    color: ${({ theme }) => theme.colors["text-title"]};
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const Statistic = styled.div`
-  background: #fff;
+  background: ${({ theme }) => theme.colors.shape};
 
   padding: 3rem;
 
   border-radius: 0.25rem;
-  box-shadow: 0px 6px 20px 6px rgba(150, 156, 179, 0.2);
+  box-shadow: 0px 6px 20px 6px rgba(0, 0, 0, 0.2);
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -65,7 +72,7 @@ export const Statistic = styled.div`
   }
 `;
 
-export const EditProfile = styled.div`
+export const EditProfile = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,17 +81,20 @@ export const EditProfile = styled.div`
   form {
     padding: 3rem;
     
-    background: #fff;
-    box-shadow: 0px 6px 20px 6px rgba(150, 156, 179, 0.2);
+    background: ${({ theme }) => theme.colors.shape};;
+    box-shadow: 0px 6px 20px 6px rgba(0, 0, 0, 0.2);
 
     border-radius: 0.25rem;
-
-    h2 {
-      color: ${({ theme }) => theme.colors["text-title"]};
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-    }
   }
 `;
 
+export const SettingsSection = styled.section`
+  background: ${({ theme }) => theme.colors.shape};;
 
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding: 3rem;
+
+  border-radius: 0.25rem;
+  box-shadow: 0px 6px 20px 6px rgba(0, 0, 0, 0.2);
+`;
