@@ -30,6 +30,12 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
   async function handleCreateNewTransaction(e: FormEvent<HTMLFormElement>) { 
     e.preventDefault();
 
+    const allValuesHasInserted = Object.values(data).some(value => value !== '');
+
+    if (!allValuesHasInserted) {
+      return;
+    }
+
     await createTransaction(data)
     
     setData({

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../../app/services/api';
 import { LinkButton, SubmitButton } from '../../components/buttons';
 import { Input } from '../../components/inputs';
+import { MessageModal } from '../../components/MessageModal';
 
 import { Container } from './styles';
 
@@ -16,6 +17,7 @@ interface CreateUserData {
 
 export function SignUp() {
   const navigate = useNavigate();
+  const [messageModalIsOpen, setMessageModalIsOpen] = useState(false);
   const [data, setData] = useState({} as CreateUserData);
 
   async function handleCreateUser(event: FormEvent) {
@@ -63,6 +65,13 @@ export function SignUp() {
 
         <LinkButton title="Já possui conta?" link="/signin" /> 
       </form>
+
+      <MessageModal 
+        title='Erro' 
+        message='parece que você já possui uma conta criada.' 
+        isOpen={messageModalIsOpen} 
+        onRequestClose={() => setMessageModalIsOpen(false)} 
+      />
     </Container>
   );
 }

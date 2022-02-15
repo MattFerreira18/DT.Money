@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../app/hooks/useAuth';
 import { LinkButton, SubmitButton } from '../../components/buttons';
 import { Input } from '../../components/inputs';
+import { MessageModal } from '../../components/MessageModal';
 
 import { Container } from './styles';
 
@@ -16,6 +17,7 @@ export function SignIn() {
   const navigate = useNavigate();
   const [signInData, setSignInData] = useState({} as SignInData);
   const { signIn, isAuthenticated } = useAuth();
+  const [messageModalIsOpen, setMessageModalIsOpen] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -26,7 +28,13 @@ export function SignIn() {
   async function handleSignIn(event: FormEvent) {
     event.preventDefault();
 
-    await signIn(signInData.email, signInData.password);
+    const error = await signIn(signInData.email, signInData.password);
+
+    if (error) {
+      setMessageModalIsOpen(true);
+    }
+
+    setSignInData({ email: '', password: '' });
   }
 
   return (
@@ -51,6 +59,13 @@ export function SignIn() {
 
         <LinkButton title="Ainda não possui conta?" link="/signup" />
       </form>
+
+      <MessageModal 
+        title='Erro' 
+        message='parece que você digitou o seu usuário ou senha de maneira incorreta. Tente novamente.' 
+        isOpen={messageModalIsOpen} 
+        onRequestClose={() => setMessageModalIsOpen(false)} 
+      />
     </Container>
   );
 }

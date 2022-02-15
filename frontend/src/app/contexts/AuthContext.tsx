@@ -12,7 +12,7 @@ interface User {
 interface AuthContextData {
   user: User;
   isAuthenticated: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<unknown>;
   signOut: () => Promise<void>;
 }
 
@@ -80,7 +80,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsAuthenticated(!!userToken);
         navigate('/dashboard');
       }
-    } catch (err) { }
+    } catch (err) { 
+      return err;
+    }
   }
 
   async function signOut() {

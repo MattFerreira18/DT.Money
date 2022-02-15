@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 import { api } from '../services/api';
 
@@ -26,11 +27,14 @@ type TransactionsContextData = {
 export const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
+  const { isAuthenticated } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   
   useEffect(() => {
-    api.get('/transactions')
+    if (isAuthenticated) {
+      api.get('/transactions')
       .then(response => setTransactions(response.data));
+    }
   }, []);
   
   async function createTransaction(transaction: TransactionInput) {
