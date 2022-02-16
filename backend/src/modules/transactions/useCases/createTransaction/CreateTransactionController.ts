@@ -7,13 +7,20 @@ export class CreateTransactionController {
 
   async handle({ req, res, next }: HttpServer): Promise<Http.Response> {
     try {
-      const { title, type, category, amount } = req.body as ICreateTransactionDto;
+      const { id: userId } = req.user;
+      const {
+        title,
+        type,
+        category,
+        amount,
+      } = req.body as ICreateTransactionDto;
 
       const result = await this.createTransactionUseCase.execute({
         title,
         type,
         category,
         amount,
+        userId,
       });
 
       return res.status(201).json(result);

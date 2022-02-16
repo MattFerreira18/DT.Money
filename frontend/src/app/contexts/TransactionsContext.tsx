@@ -37,11 +37,12 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     }
   }, []);
   
-  async function createTransaction(transaction: TransactionInput) {
-    const response = await api.post('/transactions', transaction);
-    const transactionData = response.data;
+  async function createTransaction(data: TransactionInput) {
+    const response = await api.post('/transactions', data);
 
-    setTransactions(prev => ([ ...prev, transactionData ]));
+    const { transaction } = response.data;
+
+    setTransactions(prev => ([ ...prev, transaction ]));
   }
 
   const contextData = {

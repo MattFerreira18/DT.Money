@@ -5,13 +5,20 @@ import { Transaction } from "../entities/transaction";
 export class TransactionsRepository {
   constructor(private readonly repository: Repository) { }
 
-  async create({ title, category, type, amount }: ICreateTransactionDto): Promise<Transaction> {
+  async create({
+    title,
+    category,
+    type,
+    amount,
+    userId,
+  }: ICreateTransactionDto): Promise<Transaction> {
     const transaction = await this.repository.transaction.create({
       data: {
         title,
         category,
         type,
         amount,
+        userId,
       }
     });
 
