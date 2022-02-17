@@ -26,7 +26,10 @@ export class CreateTransactionUseCase {
       });
     }
 
-    const transactionAlreadyExists = await this.transactionsRepository.findByTitle(title);
+    const transactionAlreadyExists = await this.transactionsRepository.findByTitle(
+      title,
+      userId,
+    );
 
     if (transactionAlreadyExists) {
       throw new HttpException({
@@ -54,7 +57,7 @@ export class CreateTransactionUseCase {
       type,
       category,
       amount,
-
+      userId,
     });
 
     return { transaction };

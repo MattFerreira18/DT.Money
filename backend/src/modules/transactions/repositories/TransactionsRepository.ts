@@ -41,10 +41,11 @@ export class TransactionsRepository {
     return transaction;
   }
 
-  async findByTitle(title: string): Promise<Transaction> {
-    const transaction = await this.repository.transaction.findUnique({
+  async findByTitle(title: string, userId: string): Promise<Transaction> {
+    const transaction = await this.repository.transaction.findFirst({
       where: {
         title,
+        userId,
       }
     });
 

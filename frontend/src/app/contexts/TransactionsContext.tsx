@@ -33,9 +33,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   useEffect(() => {
     if (isAuthenticated) {
       api.get('/transactions')
-        .then(response => setTransactions(response.data));
-    }
-  }, []);
+        .then(response => setTransactions(response.data.transactions));
+      }
+  }, [isAuthenticated]);
   
   async function createTransaction(data: TransactionInput) {
     const response = await api.post('/transactions', data);
