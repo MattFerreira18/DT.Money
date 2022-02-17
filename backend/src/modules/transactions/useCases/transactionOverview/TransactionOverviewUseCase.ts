@@ -23,6 +23,10 @@ export class TransactionOverviewUseCase {
       });
     }
 
+    Object.assign(transactionExists, {
+      amount: transactionExists.amount / 100,
+    })
+
     return { transaction: transactionExists };
   }
 }

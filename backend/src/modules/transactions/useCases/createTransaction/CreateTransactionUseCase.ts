@@ -56,9 +56,14 @@ export class CreateTransactionUseCase {
       title,
       type,
       category,
-      amount,
+      amount: amount * 100,
       userId,
     });
+
+    Object.assign(
+      transaction,
+      { amount: transaction.amount / 100 }
+    );
 
     return { transaction };
   }

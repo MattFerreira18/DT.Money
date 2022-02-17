@@ -16,6 +16,11 @@ export class GetTransactionsUseCase {
   async execute({ userId }: IRequest): Promise<IResponse> {
     const [transactions, total] = await this.transactionsRepository.findByUserId(userId);
 
-    return { transactions, total };
+    const transactionsResponse = transactions.map(transaction => ({
+      ...transaction,
+      amount: transaction.amount / 100,
+    }))
+
+    return { transactions: transactionsResponse, total };
   }
 }
