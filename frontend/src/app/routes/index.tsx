@@ -14,6 +14,7 @@ import { Profile } from '../../ui/pages/Profile';
 export function Routes() {
   return (
     <ReactRouterRoutes>
+      <Route path='/' element={<Navigate to="/signin" />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn />} />
 

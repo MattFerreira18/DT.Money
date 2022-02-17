@@ -36,6 +36,11 @@ export const NewTransactionButton = styled.button`
   &:hover {
     filter: brightness(0.9);
   }
+
+  
+  @media (max-width: 480px) {
+    padding: 0 1rem;
+  }
 `;
 
 export const UserWrapper = styled.button`
