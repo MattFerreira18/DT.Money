@@ -34,8 +34,8 @@ export class TransactionsStatisticsUseCase {
 
     return {
       total_transactions: totalTransactions,
-      total_deposits: totalDeposits,
-      total_withdraws: totalWithdraws,
+      total_deposits: totalDeposits / 100,
+      total_withdraws: totalWithdraws / 100,
     };
   }
 }

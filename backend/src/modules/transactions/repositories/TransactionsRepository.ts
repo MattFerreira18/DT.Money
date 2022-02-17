@@ -76,12 +76,12 @@ export class TransactionsRepository {
         where: {
           type: filter,
         },
-        _count: {
+        _sum: {
           amount: true,
         },
       });
 
-      total = result._count.amount;
+      total = result._sum.amount;
     } else {
       total = await this.repository.transaction.count({ where: { userId } });
     }
