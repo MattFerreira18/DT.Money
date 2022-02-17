@@ -4,7 +4,7 @@ export const Container = styled.div`
   max-width: 1120px;
   width: 100%;
 
-  margin: -4rem auto 0;
+  margin: -4rem auto 3rem;
   z-index: 20;
 
   display: grid;
