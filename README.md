@@ -4,8 +4,9 @@
   <h2> The application to control your finances</h2>
 </div>
 
-| ![laptop](./.github/notebook.png) | ![phone](./.github/phone.png) |
-|---|---|
+<div align="center">
+  <img src="./.github/devices.png" width="600px" />
+</div>
 
 ## 🛠 Technologies used in this application
 ### Frontend
@@ -20,6 +21,7 @@
 - [Typescript](https://www.typescriptlang.org/)
 - [Node](https://nodejs.org/)
 - [Docker](https://www.docker.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 - [ExpressJS](https://expressjs.com/)
 - [PrismaORM](https://www.prisma.io/)
 
@@ -44,7 +46,9 @@
 
 3. Use ``` docker-compose up database``` in your terminal to create the database container in your local machine.
 
-4. Use ``` yarn dev ``` to start the server.
+4. Use ``` yarn prisma migrate deploy ``` to realize the database migrations.
+
+5. Use ``` yarn dev ``` to start the server.
 
 #### 🎨 Frontend
 1. install the dependencies using the ``` yarn ``` command.
@@ -57,7 +61,7 @@
 
 ## Credits
 - The initial structure of this project was created with [Diego Fernandes](https://github.com/diego3g) in the [Rocketseat's Ignite](https://rocketseat.com.br/ignite).
-- The project design was created by [Tiago Luchtenberg](https://www.instagram.com/tiagoluchtenberg/).
+- The initial project design was created by [Tiago Luchtenberg](https://www.instagram.com/tiagoluchtenberg/).
 
 ## ✍ Author
 <a href="https://www.github.com/MattFerreira18">
