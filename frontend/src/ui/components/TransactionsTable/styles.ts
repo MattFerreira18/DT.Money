@@ -51,8 +51,15 @@ export const Container = styled.div`
         border: 0;
         background: ${({theme}) => theme.colors.shape};
         color: ${({theme}) => theme.colors["text-body"]};
-        border-radius: 0.25rem;
+        
+        &:first-child {
+          border-radius: 0.25rem 0 0 0.25rem;
+        }
 
+        &:last-child {
+          border-radius: 0 0.25rem 0.25rem 0;
+        }
+ 
         @media(max-width: 480px) {
           &:first-child,
           &:nth-child(2) {
